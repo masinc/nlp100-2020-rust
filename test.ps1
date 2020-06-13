@@ -18,16 +18,12 @@ Get-ChildItem src `
         }
         $ans = (Get-Content ${ans_fn})
 
-        $diff = (Compare-Object -CaseSensitive $res $ans)
-        try
-        {
-            # Diff result, If "InputObject" or "SideIndicator" propery found
-            $diff.InputObject > $null
-            $diff
-            $failCount++
-            Write-Output "${name}: NG"
-        } catch {
+        if ($res -eq $ans) {
             Write-Output "${name}: OK"
+        } else {
+            $failCount++
+            Compare-Object -CaseSensitive $res $ans
+            Write-Output "${name}: NG"
         }
     } catch {
         $failCount++
