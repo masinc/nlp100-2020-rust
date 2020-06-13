@@ -1,0 +1,6 @@
+x={"ad", "ap", "ar", "di", "is", "pa", "ra", "se"}
+y={"ag", "ap", "ar", "gr", "pa", "ph", "ra"}
+union={"ad", "ag", "ap", "ar", "di", "gr", "is", "pa", "ph", "ra", "se"}
+intersection={"ap", "ar", "pa", "ra"}
+difference={"ad", "di", "is", "se"}
+contains-se=false
