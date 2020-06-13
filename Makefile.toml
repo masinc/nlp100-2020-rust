@@ -1,0 +1,26 @@
+[tasks.run]
+script_runner = "pwsh"
+script_extension = "ps1"
+script = [
+'''
+echo $PSVersionTable
+
+$failCount = 0
+
+Get-ChildItem src
+| Where-Object { Test-Path -PathType Container $_ }
+| Foreach-Object {
+    $name = $_.Name
+    if ((cargo run --bin ${name}) -eq (Get-Content answers/${name})) {
+        echo "${name}: OK"
+    } else {
+        $failCount++
+        echo "${name}: NG"
+    }
+}
+
+echo ""
+echo "Failed: $failCount"
+exit $failCount
+'''
+]
