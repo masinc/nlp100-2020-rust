@@ -8,7 +8,7 @@ Get-ChildItem src `
 | Foreach-Object {
     $name = $_.Name
     try {
-        $r = (cargo run --bin ${name})
+        $res = (cargo run --bin ${name})
         if (!$?) {
             throw "${name}: Failed cargo run"
         }
@@ -18,10 +18,11 @@ Get-ChildItem src `
         }
         $ans = (Get-Content ${ans_fn})
 
-        if ( $r -eq $ans) {
-            Write-Output "${name}: OK" `
+        if ($res -eq $ans) {
+            Write-Output "${name}: OK"
         } else {
             $failCount++
+            Compare-Object -CaseSensitive $res $ans
             Write-Output "${name}: NG"
         }
     } catch {
