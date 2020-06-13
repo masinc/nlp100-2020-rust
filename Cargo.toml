@@ -26,4 +26,8 @@ path = "src/p3/main.rs"
 name = "p4"
 path = "src/p4/main.rs"
 
+[[bin]]
+name = "p5"
+path = "src/p5/main.rs"
+
 [dependencies]
