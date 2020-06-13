@@ -12,10 +12,7 @@ env:
 jobs:
   test-ubuntu:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Install
-      run: cargo install cargo-make
     - name: test
-      run: cargo make test 
+      run: pwsh -c test.ps1
