@@ -1,0 +1,6 @@
+["I", " ", "a", "m", " ", "a", "n", " ", "N", "L", "P", "e", "r"]
+["I ", " a", "am", "m ", " a", "an", "n ", " N", "NL", "LP", "Pe", "er"]
+["I a", " am", "am ", "m a", " an", "an ", "n N", " NL", "NLP", "LPe", "Per"]
+[["I"], ["am"], ["an"], ["NLPer"]]
+[["I", "am"], ["am", "an"], ["an", "NLPer"]]
+[["I", "am", "an"], ["am", "an", "NLPer"]]
