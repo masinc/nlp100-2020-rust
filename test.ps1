@@ -8,7 +8,7 @@ Get-ChildItem src `
 | Foreach-Object {
     $name = $_.Name
     try {
-        $r = (cargo run --bin ${name})
+        $res = (cargo run --bin ${name})
         if (!$?) {
             throw "${name}: Failed cargo run"
         }
@@ -18,11 +18,16 @@ Get-ChildItem src `
         }
         $ans = (Get-Content ${ans_fn})
 
-        if ( $r -eq $ans) {
-            Write-Output "${name}: OK" `
-        } else {
+        $diff = (Compare-Object -CaseSensitive $res $ans)
+        try
+        {
+            # Diff result, If "InputObject" or "SideIndicator" propery found
+            $diff.InputObject > $null
+            $diff
             $failCount++
             Write-Output "${name}: NG"
+        } catch {
+            Write-Output "${name}: OK"
         }
     } catch {
         $failCount++
