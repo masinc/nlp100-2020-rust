@@ -8,7 +8,7 @@ Get-ChildItem src `
 | Foreach-Object {
     $name = $_.Name
     try {
-        $res = (cargo run --bin ${name})
+        [string] $res = (cargo run --bin ${name})
         if (!$?) {
             throw "${name}: Failed cargo run"
         }
@@ -16,8 +16,7 @@ Get-ChildItem src `
         if (!(Test-Path -PathType Leaf $ans_fn)) {
             throw "${name}: Not found ${ans_fn}"
         }
-        $ans = (Get-Content ${ans_fn})
-
+        [string] $ans = (Get-Content ${ans_fn})
         if ($res -eq $ans) {
             Write-Output "${name}: OK"
         } else {
