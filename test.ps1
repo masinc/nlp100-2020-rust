@@ -26,7 +26,7 @@ Get-ChildItem src `
         }
     } catch {
         $failCount++
-        Write-Error $Error[0]
+        Write-Error $_
         Write-Output "${name}: NG"
     }
 }
